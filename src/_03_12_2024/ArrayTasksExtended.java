@@ -108,7 +108,7 @@ public class ArrayTasksExtended {
     public static void task24() {
         int[] array = {1, 2, 3, 4};
         int mult = array[0];
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 1; i < array.length; i++) {
             mult = mult * array[i];
         }
         System.out.println(mult);
@@ -169,23 +169,63 @@ public class ArrayTasksExtended {
     // 28. Найти длину самой длинной последовательности одинаковых элементов.
     public static void task28() {
         int[] array = {1, 1, 2, 2, 2, 3, 3};
+        int maxLength = 1;
+        int currentLength = 1;
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] == array[i + 1]){
+                currentLength++;
+            } else {
+                if (currentLength > maxLength){
+                    maxLength = currentLength;
+                }
+                currentLength = 1;
+            }
+        }
+        if (currentLength > maxLength){
+            maxLength = currentLength;
+        }
+        System.out.println(maxLength);
     }
 
-    // 29. Найти сумму положительных элементов, расположенных после первого отрицательного.
+    // 29.  Найти сумму положительных элементов, расположенных после первого отрицательного.
     public static void task29() {
-        int[] array = {1, -2, 3, 4, -5};
+        int[] array = {1, -2, 3, 4, -5}; //СЛОЖНО БЫЛО
+        boolean isNegative = false;
+        int sum = 0;
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length; j++) {
-
+            if(array[i] < 0 && !isNegative){
+                isNegative = true;
             }
-
+            if (isNegative && array[i] > 0) {
+                sum += array[i];
+            }
         }
+        System.out.println(sum);
     }
 
     // 30. Удалить все дубликаты из массива.
     public static void task30() {
-        int[] array = {1, 2, 2, 3, 4, 4, 5};
-
+        int[] array = {1, 2, 2, 3, 4, 4, 5}; // Еще сложнее
+        int[] newArray = new int[array.length];
+        int temp = 0;
+        for (int i = 0; i < array.length; i++) {
+            boolean isDupl = false;
+            for (int j = 0; j < temp; j++) {
+                if (array[i] == newArray[j]) {
+                    isDupl = true;
+                    break;
+                }
+            }
+            if (!isDupl) {
+                newArray[temp] = array[i];
+                temp++;
+            }
+        }
+        int[] result = new int[temp];
+        for (int i = 0; i < temp; i++) {
+            result[i] = newArray[i];
+        }
+        System.out.println(Arrays.toString(result));
     }
 
     public static void main(String[] args) {
