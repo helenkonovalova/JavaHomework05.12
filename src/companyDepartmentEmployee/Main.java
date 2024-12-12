@@ -78,7 +78,7 @@ public class Main {
         Employee[] employees = {employee1, employee2, employee3, employee4, employee5};
 
         for (int i = 0; i < employees.length; i++) {
-            if(employees[i].getSalary() > 3000 ) {
+            if(employees[i].getSalary() > employee5.getSalary()) {
                 System.out.println(employees[i]);
             }
         }
